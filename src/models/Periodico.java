@@ -28,5 +28,8 @@ public class Periodico extends MaterialBiblioteca{
                 ", autor='" + autor + '\'' +
                 ", anioPublicacion=" + anioPublicacion +
                 '}';    }
-
+    @Override
+    public String toString() {
+        return mostrarClase();
+    }
 }

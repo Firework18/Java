@@ -4,6 +4,7 @@ public class Libro extends MaterialBiblioteca implements Prestable{
 
     private String genero;
     private int numeroPaginas;
+    private boolean prestado;
 
     public Libro(String titulo, String autor, int anioPublicacion, String genero, int numeroPaginas) {
         super(titulo, autor, anioPublicacion);
@@ -41,11 +42,28 @@ public class Libro extends MaterialBiblioteca implements Prestable{
 
     @Override
     public void prestar() {
-        System.out.println("El libro "+this.titulo+" se ha prestado.");
+        if(prestado){
+            System.out.println("El libro "+this.titulo+" ya se ha prestado.");
+        }else{
+            prestado = true;
+            System.out.println("Libro prestado: "+this.titulo);
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return mostrarClase();
     }
 
     @Override
     public void devolver() {
-        System.out.println("El libro "+this.titulo+" se ha devuelto.");
+        if(prestado){
+            prestado = false;
+            System.out.println("El libro "+this.titulo+" se ha devuelto.");
+        }else {
+            System.out.println("El Libro no estaba prestado: "+this.titulo);
+        }
+
     }
 }

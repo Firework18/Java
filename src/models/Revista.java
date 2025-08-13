@@ -3,6 +3,7 @@ package models;
 public class Revista extends MaterialBiblioteca implements Prestable{
 
     private String edicion,mesPublicacion;
+    private boolean prestado;
 
     public Revista(String titulo, String autor, int anioPublicacion, String edicion, String mesPublicacion) {
         super(titulo, autor, anioPublicacion);
@@ -38,11 +39,24 @@ public class Revista extends MaterialBiblioteca implements Prestable{
 
     @Override
     public void prestar() {
-        System.out.println("La revista "+titulo+" se ha prestado.");
+        if (prestado){
+            System.out.println("La revista "+titulo+" ya se ha prestado.");
+        }else {
+            prestado = true;
+            System.out.println("Revista prestada: "+this.titulo);
+        }
     }
-
+    @Override
+    public String toString() {
+        return mostrarClase();
+    }
     @Override
     public void devolver() {
-        System.out.println("La revista "+titulo+" se ha devuelto.");
+        if(prestado){
+            prestado = false;
+            System.out.println("La revista "+titulo+" se ha devuelto");
+        }else {
+            System.out.println("La revista "+titulo+" no estaba prestada");
+        }
     }
 }
